@@ -1,1 +1,1 @@
-This is our CSE 676 Deep Learning Final Project Directory
+This is our CSE 676 Deep Learning Final Project Repository
