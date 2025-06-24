@@ -3,7 +3,7 @@ import os
 import gzip
 from rdkit import Chem
 from tqdm import tqdm 
-
+#Extracting data using pubchem api, might use bigquery in final project
 def extract_smiles_from_sdf_gz(input_folder, output_smiles_file):
 
     # Getting a sorted list of all .sdf.gz files
