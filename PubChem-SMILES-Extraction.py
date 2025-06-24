@@ -1,19 +1,4 @@
-# ---
-# jupyter:
-#   jupytext:
-#     formats: py:percent
-#     text_representation:
-#       extension: .py
-#       format_name: percent
-#       format_version: '1.3'
-#       jupytext_version: 1.17.2
-#   kernelspec:
-#     display_name: Python [conda env:base] *
-#     language: python
-#     name: conda-base-py
-# ---
 
-# %%
 import os
 import gzip
 from rdkit import Chem
@@ -33,6 +18,7 @@ def extract_smiles_from_sdf_gz(input_folder, output_smiles_file):
 
     total_processed_smiles = 0
     total_skipped_molecules = 0
+    total_added =0
 
     with open(output_smiles_file, 'w', encoding='utf-8') as out_f:
         for i, sdf_gz_filename in enumerate(sdf_gz_files):
@@ -46,6 +32,7 @@ def extract_smiles_from_sdf_gz(input_folder, output_smiles_file):
                 
                 with gzip.open(full_path_gz, 'rb') as f_gz: 
                     suppl = Chem.ForwardSDMolSupplier(f_gz)
+                    chain = []
 
                     # Iterate through molecules in the current SDF file
                     for mol in tqdm(suppl, desc=f"Extracting from {sdf_gz_filename}"):
