@@ -23,7 +23,7 @@ def extract_smiles_from_sdf_gz(input_folder, output_smiles_file):
     with open(output_smiles_file, 'w', encoding='utf-8') as out_f:
         for i, sdf_gz_filename in enumerate(sdf_gz_files):
             full_path_gz = os.path.join(input_folder, sdf_gz_filename)
-            print(f"\n--- Processing file {i+1} of {len(sdf_gz_files)}: {sdf_gz_filename} ---")
+            print(f"\nProcessing file {i+1} of {len(sdf_gz_files)}: {sdf_gz_filename} ---")
 
             current_file_smiles_count = 0
             current_file_skipped_count = 0
