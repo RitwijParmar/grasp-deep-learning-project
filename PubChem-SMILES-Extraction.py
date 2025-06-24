@@ -10,7 +10,7 @@ def extract_smiles_from_sdf_gz(input_folder, output_smiles_file):
     sdf_gz_files = sorted([f for f in os.listdir(input_folder) if f.endswith('.sdf.gz')])
 
     if not sdf_gz_files:
-        print(f"Error: No .sdf.gz files found in the specified input folder: {input_folder}")
+        print(f"Error: No .sdf.gz files found in the specified input: {input_folder}")
         return
 
     print(f"Found {len(sdf_gz_files)} .sdf.gz files to process.")
