@@ -1,6 +1,6 @@
 This is our CSE 676 Deep Learning Final Project Repository
 
-This Repository is being managed by Yash, Ritwij Aryan and Hussain.
+This Repository is being managed by Yash, Ritwij and Hussain.
 
 <p align="center">
   <img src="images/trello-checkpoint-23.png" alt="Project Management Board">
