@@ -21,7 +21,7 @@ from tqdm import tqdm
 
 def extract_smiles_from_sdf_gz(input_folder, output_smiles_file):
 
-    # Getting a sorted list of all .sdf.gz files
+    # Getting a sorted list of all .sdf.gz file
     sdf_gz_files = sorted([f for f in os.listdir(input_folder) if f.endswith('.sdf.gz')])
 
     if not sdf_gz_files:
