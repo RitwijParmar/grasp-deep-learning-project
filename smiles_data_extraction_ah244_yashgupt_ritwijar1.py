@@ -51,7 +51,7 @@ def extract_smiles_from_sdf_gz(input_folder, output_smiles_file):
                     for mol in tqdm(suppl, desc=f"Extracting from {sdf_gz_filename}"):
                         if mol is not None: # returns None for molecules rdkit cannot parse
                             try:
-                                # Get the canonical SMILES string for consistency
+                                # Get canonical SMILES string for consistency
                                 smiles = Chem.MolToSmiles(mol, canonical=True)
                                 out_f.write(smiles + '\n')
                                 current_file_smiles_count += 1
