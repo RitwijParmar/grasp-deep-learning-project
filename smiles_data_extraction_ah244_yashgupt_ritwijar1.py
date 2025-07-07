@@ -79,7 +79,7 @@ def extract_smiles_from_sdf_gz(input_folder, output_smiles_file):
     print(f"All SMILES saved to: {output_smiles_file}")
     print("\nNext steps: You can now use this 'pubchem_smiles_for_pretraining.txt' file for your model's pre-training phase.")
 
-# %%
+# path
 input_directory = 'PubChem_compound' 
 output_smiles_file_path = 'pubchem_smiles_for_pretraining.txt'
 
