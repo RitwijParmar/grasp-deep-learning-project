@@ -10,7 +10,7 @@
 #   kernelspec:
 #     display_name: Python [conda env:base] *
 #     language: python
-#     name: conda-base-py
+
 
 
 # %%
