@@ -1,0 +1,23 @@
+{
+  "run_type": "bounded_cloud_run_gpu_smoke",
+  "execution": "kinetiguard-gpu-smoke-54frb",
+  "region": "us-east4",
+  "device": "cuda",
+  "gpu_name": "NVIDIA L4",
+  "frames": 64,
+  "dataset": "synthetic_pair_harmonic",
+  "metrics": {
+    "energy_mae": 0.044895485043525696,
+    "force_mae": 0.07326339930295944,
+    "force_rmse": 0.08903228491544724,
+    "uncertainty_error_spearman": 0.30000001192092896
+  },
+  "conformal": {
+    "target_coverage": 0.8,
+    "empirical_coverage": 1.0,
+    "mean_force_bound": 0.16322407126426697,
+    "mean_force_error": 0.08735396713018417
+  },
+  "rotation_energy_max_abs_error": 8.940696716308594e-08,
+  "interpretation": "Infrastructure and mathematical smoke validation only; this is not a 3BPA, rMD17, MD22, or Landscape17 result."
+}
