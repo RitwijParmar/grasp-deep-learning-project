@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If KinetiGuard informs your work, please cite the repository and the benchmark sources listed in the README."
+title: "KinetiGuard: Uncertainty-Calibrated Active Learning for Kinetically Faithful Molecular Force Fields"
+type: software
+version: 0.1.0
+date-released: 2026-09-19
+authors:
+  - family-names: Parmar
+    given-names: Ritwij
+repository-code: "https://github.com/RitwijParmar/grasp-deep-learning-project"
+abstract: >-
+  Research software for conservative equivariant molecular force fields,
+  conformal uncertainty, kinetic-risk acquisition, and kinetic-landscape evaluation.
