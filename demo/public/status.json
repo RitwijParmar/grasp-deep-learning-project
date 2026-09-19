@@ -1,0 +1,6 @@
+{
+  "nav": "3BPA L4 pilot running",
+  "state": "running",
+  "detail": "Three conservative ensemble members are training on 300 K configurations. The 600 K and 1200 K tests remain held out until the run finishes.",
+  "claim": "not yet"
+}
