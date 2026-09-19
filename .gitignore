@@ -1,1 +1,12 @@
-pubchem_smiles_for_pretraining.txt
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+data/
+runs/
+artifacts/*.pt
+artifacts/*.csv
+artifacts/*.json
+*.egg-info/
+.DS_Store
