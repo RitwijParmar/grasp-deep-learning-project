@@ -1,0 +1,10 @@
+experiment: gpu_smoke
+dataset: synthetic_pair_harmonic
+device: cuda
+epochs: 12
+frames: 64
+ensemble_members: 2
+assertions:
+  - conservative_force_gradient
+  - translation_rotation_invariance
+  - ensemble_conformal_calibration
