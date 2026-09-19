@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="KinetiGuard: a research demo for kinetically faithful molecular force fields." />
+    <title>KinetiGuard — Molecular dynamics, with receipts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <main>
+      <nav class="nav shell">
+        <a class="wordmark" href="#top"><span class="wordmark-dot"></span>KinetiGuard</a>
+        <div class="nav-meta"><span class="live-dot"></span><span id="navStatus">research run active</span></div>
+        <button class="tour-button" id="startTour">Take the 90-second tour <span>→</span></button>
+      </nav>
+
+      <section class="hero shell" id="top">
+        <div class="hero-copy" data-tour="hero">
+          <p class="eyebrow">Molecular ML · Kinetic faithfulness</p>
+          <h1>Low force error is not the same as <em>getting the chemistry right.</em></h1>
+          <p class="hero-body">KinetiGuard is a research system for asking the question that most molecular benchmarks skip: does a learned force field preserve the conformers and transition barriers that control molecular behavior?</p>
+          <div class="hero-actions">
+            <button class="primary-button" id="heroTour">Show me how it works <span>↓</span></button>
+            <a class="text-link" href="#ledger">See the run ledger</a>
+          </div>
+          <div class="proof-row">
+            <div><b>NVIDIA L4</b><span>CUDA path verified</span></div>
+            <div><b>3BPA</b><span>flexible-molecule OOD pilot</span></div>
+            <div><b>Landscape17</b><span>barrier-aware evaluation</span></div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Illustration of a molecular potential energy surface">
+          <div class="orb orb-a"></div><div class="orb orb-b"></div>
+          <div class="surface-card">
+            <div class="surface-top"><span>potential energy surface</span><span>ΔE</span></div>
+            <svg viewBox="0 0 560 310" role="img" aria-label="Two molecular basins separated by a transition barrier">
+              <defs><linearGradient id="surfaceFill" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#b9efd9" stop-opacity=".66"/><stop offset="1" stop-color="#70a1ff" stop-opacity=".06"/></linearGradient></defs>
+              <path class="grid-line" d="M24 78 C145 28 375 27 536 77"/><path class="grid-line" d="M24 150 C177 104 373 107 536 150"/><path class="grid-line" d="M24 222 C177 181 373 181 536 222"/>
+              <path class="landscape-fill" d="M24 249 C77 253 88 230 137 207 C183 185 200 213 248 194 C294 176 300 97 352 105 C404 111 430 207 469 198 C496 192 506 162 536 170 L536 282 L24 282 Z"/>
+              <path class="landscape" d="M24 249 C77 253 88 230 137 207 C183 185 200 213 248 194 C294 176 300 97 352 105 C404 111 430 207 469 198 C496 192 506 162 536 170"/>
+              <circle class="basin" cx="137" cy="207" r="9"/><circle class="saddle" cx="352" cy="105" r="9"/><circle class="basin" cx="469" cy="198" r="9"/>
+              <text x="112" y="246">conformer A</text><text x="329" y="74">barrier</text><text x="447" y="235">conformer B</text>
+            </svg>
+            <div class="surface-legend"><span><i class="mint"></i>stable conformer</span><span><i class="coral"></i>transition risk</span></div>
+          </div>
+          <div class="visual-note"><span>THE POINT</span> A model can score well on average while moving this barrier by enough to change a rate.</div>
+        </div>
+      </section>
+
+      <section class="statement shell" data-tour="problem">
+        <p class="section-number">01 / The gap</p>
+        <h2>Most models are graded on a snapshot. Molecules live on a landscape.</h2>
+        <p>Force MAE matters, but it hides the mistakes that alter which molecular shapes are visited and how often a system crosses between them. KinetiGuard puts those kinetic questions in the experiment plan from day one.</p>
+      </section>
+
+      <section class="method shell" id="method">
+        <div class="method-intro"><p class="section-number">02 / The method</p><h2>Three signals. One honest decision.</h2><p>Each part has a simple job, and each has a visible failure mode.</p></div>
+        <div class="method-grid">
+          <article class="method-card" data-tour="model"><span class="step">A</span><h3>Conservative 3D potential</h3><p>The model predicts an energy, then obtains forces as its coordinate gradient. That keeps the physics internally consistent.</p><code>F(x) = −∇E(x)</code></article>
+          <article class="method-card" data-tour="uncertainty"><span class="step">B</span><h3>Calibrated uncertainty</h3><p>A small ensemble disagrees where it has not learned enough. A held-out set turns that disagreement into a coverage-tested force bound.</p><code>bound(x) = q · spread(x)</code></article>
+          <article class="method-card" data-tour="risk"><span class="step">C</span><h3>Kinetic-risk acquisition</h3><p>When uncertainty coincides with negative curvature, the system flags a potentially transition-relevant region for the next expensive label.</p><code>risk = bound × transition weight</code></article>
+        </div>
+      </section>
+
+      <section class="interactive shell" id="lab" data-tour="lab">
+        <div class="lab-head"><div><p class="section-number">03 / Interactive lab</p><h2>Move through a toy molecular path.</h2><p>This is a transparent illustration of the acquisition rule, not a claim about a real molecule.</p></div><span class="toy-badge">illustrative only</span></div>
+        <div class="lab-grid">
+          <div class="path-panel">
+            <div class="path-labels"><span>conformer A</span><span>barrier region</span><span>conformer B</span></div>
+            <input aria-label="Molecular path position" type="range" min="0" max="100" value="50" id="pathSlider" />
+            <div class="path-line"><span class="path-dot" id="pathDot"></span><span class="barrier-mark"></span></div>
+            <p id="pathReadout">At the barrier: the system pays more attention to uncertainty that could change the transition.</p>
+          </div>
+          <div class="risk-panel">
+            <div><span>ensemble force bound</span><b id="boundValue">0.18</b><small>arbitrary units</small></div>
+            <div><span>transition weight</span><b id="weightValue">0.92</b><small>from curvature probe</small></div>
+            <div class="risk-total"><span>label priority</span><b id="riskValue">0.35</b><small id="priorityText">high — add to candidate queue</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ledger shell" id="ledger" data-tour="ledger">
+        <div class="ledger-title"><p class="section-number">04 / Experiment ledger</p><h2>What has actually run.</h2><p>No hand-wavy checkmarks. Every status here has a scope.</p></div>
+        <div class="ledger-grid">
+          <article class="run-card verified"><div class="run-top"><span class="run-status">verified</span><span>2026-09-19</span></div><h3>CUDA mathematical smoke test</h3><p>Exact-oracle potential on an NVIDIA L4. Confirms CUDA, conservative gradients, rotation invariance, and the calibration path.</p><dl><div><dt>rotation error</dt><dd>8.94e−08</dd></div><div><dt>coverage</dt><dd>1.00 / 0.80 target</dd></div></dl></article>
+          <article class="run-card running" id="pilotCard"><div class="run-top"><span class="run-status" id="pilotState">running</span><span>3BPA</span></div><h3>Flexible-molecule OOD pilot</h3><p id="pilotDetail">Training three conservative ensemble members on 300 K configurations; tests are held for 600 K and 1200 K.</p><dl><div><dt>label budget</dt><dd>pilot</dd></div><div><dt>result claim</dt><dd id="pilotClaim">not yet</dd></div></dl></article>
+          <article class="run-card planned"><div class="run-top"><span class="run-status">planned</span><span>Landscape17</span></div><h3>Barrier &amp; network evaluation</h3><p>Matched minima and transition states will test barrier ordering and calibrated abstention—separately from ordinary force error.</p><dl><div><dt>required</dt><dd>3 seeds</dd></div><div><dt>baselines</dt><dd>4 methods</dd></div></dl></article>
+        </div>
+      </section>
+
+      <section class="claim-section shell" data-tour="claims">
+        <p class="section-number">05 / Claim boundary</p>
+        <div><h2>A strong demo should make the limits easy to see.</h2><p>KinetiGuard is not a drug-discovery engine and this page does not invent benchmark wins. The right claim today is simple: the research system, GPU path, and evaluation discipline are real; the chemistry results arrive only after the 3BPA and kinetic-network experiments finish.</p></div>
+      </section>
+
+      <footer class="footer shell"><a class="wordmark" href="#top"><span class="wordmark-dot"></span>KinetiGuard</a><p>Research software for molecular dynamics—with receipts.</p><button id="footerTour">Restart guided tour ↑</button></footer>
+    </main>
+    <div class="tour-layer" id="tourLayer" aria-live="polite">
+      <div class="tour-marker" id="tourMarker"><span id="markerNumber">1</span><i></i></div>
+      <div class="tour-card" id="tourCard"><p id="tourKicker"></p><h3 id="tourTitle"></h3><p id="tourText"></p><div class="tour-controls"><button id="tourBack">Back</button><span id="tourProgress"></span><button class="tour-next" id="tourNext">Next</button></div></div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
