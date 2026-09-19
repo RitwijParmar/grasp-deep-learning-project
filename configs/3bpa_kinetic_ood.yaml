@@ -1,0 +1,40 @@
+# Primary paper experiment: label only 300 K configurations, then measure whether
+# uncertainty-guided acquisition preserves force accuracy and calibration at 600/1200 K.
+dataset:
+  name: 3BPA
+  train_split: data/3bpa/processed/train_300K.pt
+  test_splits:
+    id_300K: data/3bpa/processed/test_300K.pt
+    ood_600K: data/3bpa/processed/test_600K.pt
+    ood_1200K: data/3bpa/processed/test_1200K.pt
+model:
+  hidden_dim: 128
+  radial_basis: 24
+  interactions: 5
+  cutoff: 5.0
+training:
+  ensemble_members: 5
+  epochs: 500
+  batch_size: 8
+  learning_rate: 0.002
+  force_weight: 50.0
+  energy_weight: 1.0
+acquisition:
+  initial_labels: 500
+  labels_per_round: 250
+  rounds: 4
+  conformal_alpha: 0.1
+  curvature_directions: 8
+  curvature_scale: 1.0
+  diversity_weight: 0.25
+reporting:
+  required:
+    - energy_mae
+    - force_mae
+    - ood_600K_and_1200K_conformal_coverage
+    - risk_coverage_curve
+    - Landscape17_barrier_metrics
+  baselines:
+    - random_replay_oracle
+    - ensemble_only
+    - curvature_only
