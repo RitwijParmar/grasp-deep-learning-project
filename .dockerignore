@@ -1,0 +1,15 @@
+.git
+.venv
+__pycache__
+.pytest_cache
+.ruff_cache
+data
+runs
+artifacts
+legacy_grasp
+weights
+*.mp4
+*.pdf
+tests
+docs
+configs
